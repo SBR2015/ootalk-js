@@ -8,7 +8,3 @@ It is undocumented, but you can see the usage in test/index.js.
 
 - create tree node
 - cross platform support.
-
-## Todo (if we need)
-
-- parse json like ruby library
