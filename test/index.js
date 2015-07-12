@@ -3,9 +3,11 @@ var should = require('should'),
 
 describe("#version", function() {
   it('check version', function() {
-    ootalk.version.should.equal('0.1.1');
+    ootalk.version.should.equal('0.1.2');
   });
 });
+
+
 
 describe('#newNode', function() {
   it('create add node', function() {
@@ -42,10 +44,12 @@ describe('#searchNode', function() {
     node.Add.Left.Add.Left.should.equal(1);
     node.Add.Right.should.equal(3);
     var resultNode = ootalk.searchNode(node0.nodeid);
-    resultNode.parentObject.Add.Right.should.equal(3);
+    resultNode.Add.Right.should.equal(2);
   });
+});
 
-  it('modify node', function() {
+describe('#modify', function() {
+  it('modify', function() {
     ootalk.init();
     var const1 = ootalk.newNode('Constant', 1);
     var const2 = ootalk.newNode('Constant', 2);
@@ -55,7 +59,6 @@ describe('#searchNode', function() {
     var node = ootalk.newNode('Add', node0, const3);
     ootalk.append(node);
     ootalk.modify(const2.nodeid, add);
-
     ootalk.tree()[0].Add.Left.Add.Right.Add.Left.should.equal(3);
   });
 });

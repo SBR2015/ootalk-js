@@ -1,11 +1,12 @@
 {
   "name": "OoTalk-js",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "OoTalk for Javascript.",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/mocha --reporter spec"
   },
+  "homepage":"https://github.com/SBR2015/OoTalk-js",
   "author": "Yusuke Ohashi",
   "license": "MIT",
   "devDependencies": {
