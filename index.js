@@ -3,6 +3,7 @@ var crypto = require('crypto');
 var Node = function(operator, left, right, middle) {
   var newNode = {};
   var idsource = (new Date()).toTimeString() + operator + left;
+  newNode[operator] = {};
   newNode[operator].Left = left;
   if (right !== 'undefined') {
     idsource += right;
@@ -24,7 +25,7 @@ var Node = function(operator, left, right, middle) {
 
 var _Tree = [];
 
-module.exports = {
+var OoTalk = {
   init: function() {
     _Tree = [];
   },
@@ -115,3 +116,5 @@ module.exports = {
     return null;
   },
 };
+
+module.exports = OoTalk;

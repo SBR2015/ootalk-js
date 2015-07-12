@@ -64,7 +64,7 @@ describe('#remove', function() {
     var node4 = ootalk.newNode('Add', 10, 20);
     ootalk.append(node3);
     ootalk.remove(node.nodeid);
-    
+
     (ootalk.tree()[0].Add.Left === null).should.equal(true);
   });
 });
