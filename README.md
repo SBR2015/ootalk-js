@@ -1,6 +1,8 @@
 OoTalk-js
 ====================
 
+[![Build Status](https://travis-ci.org/SBR2015/OoTalk-js.svg?branch=master)](https://travis-ci.org/SBR2015/OoTalk-js)
+
 OoTalk Library for JavaScript.
 
 ## Usage
