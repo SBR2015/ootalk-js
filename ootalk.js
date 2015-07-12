@@ -1,5 +1,5 @@
 /*
- * OoTalk - OoTalk for Javascript.
+ * OoTalk-js - OoTalk for Javascript.
  * @version v0.0.1
  * @author Yusuke Ohashi
  * @link 
@@ -17734,6 +17734,7 @@ var Node = function(operator, left, right, middle) {
 var _Tree = [];
 
 var OoTalk = {
+  version: '0.1.1',
   init: function() {
     _Tree = [];
   },
