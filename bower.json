@@ -1,0 +1,19 @@
+{
+  "name": "OoTalk-js",
+  "version": "0.0.1",
+  "authors": [
+    "Yusuke Ohashi <yusuke@junkpiano.me>"
+  ],
+  "main": "ootalk.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
