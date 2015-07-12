@@ -1,8 +1,8 @@
 /*
  * OoTalk-js - OoTalk for Javascript.
- * @version v0.0.1
+ * @version v0.1.2
  * @author Yusuke Ohashi
- * @link 
+ * @link https://github.com/SBR2015/OoTalk-js
  * @license MIT
  */
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -17734,7 +17734,7 @@ var Node = function(operator, left, right, middle) {
 var _Tree = [];
 
 var OoTalk = {
-  version: '0.1.1',
+  version: '0.1.2',
   init: function() {
     _Tree = [];
   },
@@ -17751,7 +17751,7 @@ var OoTalk = {
     _Tree.splice(atIndex, 0, node);
   },
   modify: function(nodeid, node) {
-    var result = this.searchNode(nodeid);
+    var result = this._searchNodeInternal(nodeid);
     if (result !== null) {
       if (result.parentObject !== null) {
         var elem = result.element;
@@ -17763,7 +17763,7 @@ var OoTalk = {
     }
   },
   remove: function(nodeid) {
-    var result = this.searchNode(nodeid);
+    var result = this._searchNodeInternal(nodeid);
     if (result !== null) {
       if (result.parentObject !== null) {
         var elem = result.element;
@@ -17778,10 +17778,18 @@ var OoTalk = {
     return _Tree;
   },
   searchNode: function(nodeid) {
-    var result = {};
+    return this._searchNodeInternal(nodeid, false);
+  },
+  _searchNodeInternal: function(nodeid, needsNodeInfo) {
+    if(needsNodeInfo === undefined) needsNodeInfo = true;
+    var result = null;
     for (var i = 0; i < _Tree.length; i++) {
       var node = _Tree[i];
       if (node.nodeid === nodeid) {
+        if (needsNodeInfo === false) {
+          return node;
+        }
+        result = {};
         result.parentObject = null;
         result.node = node;
         result.nodeIndex = i;
@@ -17791,6 +17799,9 @@ var OoTalk = {
 
       result = this._searchObjectRecursive(node, nodeid, i);
       if (result !== null) {
+        if (needsNodeInfo === false) {
+          return result.node;
+        }
         result.root = node;
         break;
       }

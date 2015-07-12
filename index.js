@@ -26,7 +26,7 @@ var Node = function(operator, left, right, middle) {
 var _Tree = [];
 
 var OoTalk = {
-  version: '0.1.1',
+  version: '0.1.2',
   init: function() {
     _Tree = [];
   },
@@ -43,7 +43,7 @@ var OoTalk = {
     _Tree.splice(atIndex, 0, node);
   },
   modify: function(nodeid, node) {
-    var result = this.searchNode(nodeid);
+    var result = this._searchNodeInternal(nodeid);
     if (result !== null) {
       if (result.parentObject !== null) {
         var elem = result.element;
@@ -55,7 +55,7 @@ var OoTalk = {
     }
   },
   remove: function(nodeid) {
-    var result = this.searchNode(nodeid);
+    var result = this._searchNodeInternal(nodeid);
     if (result !== null) {
       if (result.parentObject !== null) {
         var elem = result.element;
@@ -70,10 +70,18 @@ var OoTalk = {
     return _Tree;
   },
   searchNode: function(nodeid) {
-    var result = {};
+    return this._searchNodeInternal(nodeid, false);
+  },
+  _searchNodeInternal: function(nodeid, needsNodeInfo) {
+    if(needsNodeInfo === undefined) needsNodeInfo = true;
+    var result = null;
     for (var i = 0; i < _Tree.length; i++) {
       var node = _Tree[i];
       if (node.nodeid === nodeid) {
+        if (needsNodeInfo === false) {
+          return node;
+        }
+        result = {};
         result.parentObject = null;
         result.node = node;
         result.nodeIndex = i;
@@ -83,6 +91,9 @@ var OoTalk = {
 
       result = this._searchObjectRecursive(node, nodeid, i);
       if (result !== null) {
+        if (needsNodeInfo === false) {
+          return result.node;
+        }
         result.root = node;
         break;
       }
