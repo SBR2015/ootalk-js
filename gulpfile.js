@@ -42,6 +42,6 @@ gulp.task('mocha', function() {
         .on('error', gutil.log);
 });
 
-gulp.task('watch-mocha', function() {
-    gulp.watch(['./index.js', 'test/**'], ['mocha']);
+gulp.task('watch', function() {
+    gulp.watch(['./index.js', 'test/**'], ['mocha', 'script']);
 });
