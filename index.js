@@ -26,6 +26,7 @@ var Node = function(operator, left, right, middle) {
 var _Tree = [];
 
 var OoTalk = {
+  version: '0.1.1',
   init: function() {
     _Tree = [];
   },

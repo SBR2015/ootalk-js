@@ -1,6 +1,12 @@
 var should = require('should'),
   ootalk = require('../index');
 
+describe("#version", function() {
+  it('check version', function() {
+    ootalk.version.should.equal('0.1.1');
+  });
+});
+
 describe('#newNode', function() {
   it('create add node', function() {
     ootalk.init();
@@ -44,7 +50,7 @@ describe('#searchNode', function() {
     var const1 = ootalk.newNode('Constant', 1);
     var const2 = ootalk.newNode('Constant', 2);
     var const3 = ootalk.newNode('Constant', 3);
-    var add = ootalk.newNode('Add', 3,4);
+    var add = ootalk.newNode('Add', 3, 4);
     var node0 = ootalk.newNode('Add', const1, const2);
     var node = ootalk.newNode('Add', node0, const3);
     ootalk.append(node);
