@@ -1,9 +1,10 @@
 var should = require('should'),
-  ootalk = require('../index');
+    ootalk = require('../index'),
+    pkg = require('../package.json');
 
 describe("#version", function() {
   it('check version', function() {
-    ootalk.version.should.equal('0.1.2');
+    ootalk.version.should.equal(pkg.version);
   });
 });
 

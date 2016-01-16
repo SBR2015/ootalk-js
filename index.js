@@ -1,4 +1,5 @@
 var crypto = require('crypto');
+var pkg = require('./package.json')
 
 var Node = function(operator, left, right, middle) {
   var newNode = {};
@@ -26,7 +27,7 @@ var Node = function(operator, left, right, middle) {
 var _Tree = [];
 
 var OoTalk = {
-  version: '0.1.2',
+  version: pkg.version,
   init: function() {
     _Tree = [];
   },
