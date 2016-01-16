@@ -8,7 +8,7 @@ var source = require('vinyl-source-stream2');
 var pkg = require('./package.json');
 
 var customOpts = {
-  entries: pkg.main,
+    entries: ['index.js','browser.js'],
 };
 
 var banner = [
@@ -24,16 +24,15 @@ var banner = [
 gulp.task('script', bundle);
 function bundle() {
     var b = browserify(customOpts)
-    .require('./index.js', {expose: 'ootalk'})
     .bundle();
     return b
     .pipe(source('ootalk.js'))
     .pipe(plugins.header(banner, {pkg: pkg}))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./dist'))
     .pipe(plugins.uglify())
     .pipe(plugins.header(banner, {pkg: pkg}))
     .pipe(plugins.rename('ootalk.min.js'))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./dist'));
 }
 
 gulp.task('mocha', function() {
